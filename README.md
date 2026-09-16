@@ -1,6 +1,8 @@
 # mpv SoXr Upsampler
 
 An mpv Lua script that automatically upsamples audio using FFmpeg SoXr.
+# suggestion force SoX (libsoxr) as the default software resampler in mpv.conf for precision
+audio-swresample-o=cheby=0,out_sample_fmt=dblp,precision=33,resampler=soxr
 
 ### Features
 
