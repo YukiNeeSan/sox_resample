@@ -174,7 +174,7 @@ math logic being used to create the IIR (Infinite Impulse Response) filter
 
  "tdi" (Transposed "di") more stable than di but still not good at high precision
 
-"tdii" (Transposed "dii")more stable than dii, can handle float 16-32bit
+ "tdii" (Transposed "dii")more stable than dii, can handle float 16-32bit
 
  "latt" (Lattice) more complex filter structure known for its stability
 	but for single filter like lowshelf isn't worth
@@ -238,11 +238,36 @@ width above 1.0 = too steep, causes a small bump/dip at the edge (usually unwant
 
 Quick comparison using the same filter goal —
 "warm up the bass" recommendation frequency 150-180:
-- lowshelf=frequency=180:gain=4:width_type=q:width=0.707   ← smooth, no bumps
-- lowshelf=frequency=180:gain=4:width_type=o:width=1       ← one octave wide
-- lowshelf=frequency=180:gain=4:width_type=s:width=0.9     ← gentle ramp
+lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=zdf
+
+lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=svf
+
+tiltshelf=frequency=2000:gain=-1.0:width_type=q:width=0.707:transform=zdf
+tiltshelf=frequency=2000:gain=-1.0:width_type=o:width=2.0:transform=zdf
+tiltshelf=frequency=2000:gain=-1.0:width_type=slope:width=1.0:transform=zdf
+tiltshelf=frequency=2000:gain=-1.0:width_type=h:width=1697:transform=zdf
+tiltshelf=frequency=2000:gain=-1.0:width_type=k:width=1.697:transform=zdf
 
 ```
+
+Quick Reference Formula to always find the safe Hz width:
+
+| width_type | Zero overshoot | small speaker+aexciter ceiling | Speaker ceiling | Direction |
+|---|---|---|---|---|
+| `q` | `0.707` | `≤ 0.8` | `≤ 1.0` | Smaller = safer |
+| `slope` | `1.0` | `≤ 1.2` | `≤ 1.3` | Smaller = safer |
+| `o` (octave) | `2.0` | `≥ 1.7` | `≥ 1.5` | **Larger = safer** |
+| `h` (Hz) | `freq ÷ 0.707` | `≥ freq ÷ 0.8` | `≥ freq ÷ 1.0` | **Larger = safer** |
+| `k` (kHz) | `freq(kHz) ÷ 0.707` | `≥ freq(kHz) ÷ 0.8` | `≥ freq(kHz) ÷ 1.0` | **Larger = safer** |
+
 
 
 `[stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30]`
