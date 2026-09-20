@@ -136,7 +136,7 @@ end
     local chain = string.format(
         "aresample=cheby=0:out_sample_fmt=dblp:out_sample_rate=%d:" ..
         "precision=33:resampler=soxr," ..
---	 	#"tiltshelf=frequency=14000:gain=3.0:transform=zdf:width=0.707:width_type=q," ..
+--	 	#"tiltshelf=frequency=2000:gain=-1.0:transform=zdf:width=0.707:width_type=q," ..
 		"lowshelf=frequency=180:gain=7.5:transform=zdf:width=0.707:width_type=q," .. --#(Frequency bass/lowshelf both Music and Movies = 150-180)
 		"stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30," ..
 		"dynaudnorm=coupling=0:framelen=200:gausssize=31:maxgain=20.0:peak=0.959," .. --#(framelen for Movies = 350-500, Music = 200-300, compromise both music and movies 150-200, Android mobile = 75-150), Peak = 0.95 or lower
