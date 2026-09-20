@@ -160,7 +160,7 @@ Lowshelf: gain min
 
 ```
 *frequency
-frequency value is start from minimum 3000 to maksimum 999999
+frequency value is start from minimum 0 to maksimum 999999
 
 *gain
 based on documentation ±20 dB while in the source there's no limit,
