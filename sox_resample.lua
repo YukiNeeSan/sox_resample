@@ -136,15 +136,38 @@ end
     local chain = string.format(
         "aresample=cheby=0:out_sample_fmt=dblp:out_sample_rate=%d:" ..
         "precision=33:resampler=soxr," ..
+		
 --	 	#"tiltshelf=frequency=2000:gain=-1.0:transform=zdf:width=0.707:width_type=q," ..
-		"lowshelf=frequency=180:gain=7.5:transform=zdf:width=0.707:width_type=q," .. --#(Frequency bass/lowshelf both Music and Movies = 150-180)
+		
+		"lowshelf=frequency=160:gain=7.5:transform=zdf:width=0.707:width_type=q," ..
+		-- (Frequency bass/lowshelf both Music and Movies = 120, 150, 160, 170, 180)
+		-- Smartphone random poor speaker		= 180, 200 Hz
+		-- Smartphone Good speaker 				= 120, 140, 160, 180 Hz
+		-- Laptop speaker 						= 100, 120, 140, 160, 180 Hz
+		-- TV / Small speaker 					= 80, 100, 120, 140, 160, 180 Hz
+		-- Speaker Desktop/Full-range 			= 60, 80, 100, 120, 140, 160, 180 Hz
+		-- Headphone / IEM 						= 60, 80, 100, 120, 140, 160 Hz
+		-- Subwoofer 							= 40, 50, 60, 80 Hz
+		
+		-- I hope future standards will define a minimum low-frequency tier performance target 
+		-- of around 160 Hz for low-tier speakers, together with appropriate 
+		-- frequency-response and distortion limits. This would provide a consistent 
+		-- reference for engineers and developers worldwide, reduce device-to-device 
+		-- inconsistencies, and make speaker tuning and EQ compensation more predictable.
+		
 --      "stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30," ..
-		"dynaudnorm=coupling=0:framelen=200:gausssize=31:maxgain=20.0:peak=0.959," .. --#(framelen for Movies = 350-500, Music = 200-300, compromise both music and movies 150-200, Android mobile = 75-150), Peak = 0.95 or lower
+		
+		"dynaudnorm=coupling=0:framelen=200:gausssize=31:maxgain=20.0:peak=0.959," .. 
+		-- (framelen for Movies = 350-500, Music = 200-300, compromise both music and movies 150-200, Android mobile = 75-150), Peak = 0.95 or lower
+		
 		"volume=-4.0dB:precision=double," ..
-        "aexciter=amount=1:blend=3:ceil=9999:drive=8.5:freq=2000:level_in=1:level_out=1:listen=0", -- #coloration music / musical film you can enable or disable just add/remove "--" before parameter
+        
+		"aexciter=amount=1:blend=3:ceil=9999:drive=8.5:freq=2000:level_in=1:level_out=1:listen=0", 
+		-- coloration music / musical film you can enable or disable just add/remove "--" before parameter
+		
 --		#"surround=chl_in=stereo:chl_out=7.1:win_func=gauss",   --# upmix source into surround
-		-- #win_func=bhann / gauss / hamming / lanczos / hanning / hann / rect / sine / bartlett / dolph / welch 
-		-- #and the rest are experimental blackman/flattop/bharris/bnuttall/nuttall/tukey/cauchy/parzen/poisson/bohman/kaiser 
+		-- win_func=bhann / gauss / hamming / lanczos / hanning / hann / rect / sine / bartlett / dolph / welch 
+		-- and the rest are experimental blackman/flattop/bharris/bnuttall/nuttall/tukey/cauchy/parzen/poisson/bohman/kaiser 
         target_sr
     )
 
