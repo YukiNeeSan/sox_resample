@@ -105,7 +105,7 @@ you can set cut off 0.8 Up to 0.995 manually or leave it at default
 
 `[Highshelf=frequency=16000:gain=-7.0:transform=zdf:width=0.707:width_type=q]`
 `[tiltshelf=frequency=14000:gain=-7.0:transform=zdf:width=0.707:width_type=q]`
-`[lowshelf=frequency=180:gain=7.5:transform=zdf:width=0.707:width_type=q]`
+`[lowshelf=frequency=160:gain=7.5:transform=zdf:width=0.707:width_type=q]`
 
 ```
 
@@ -157,6 +157,15 @@ Lowshelf: gain min
 			 //
 =============
 ```
+| Device | `lowshelf` |
+|---|---|
+| Smartphone Small speaker | **160, 180, 200 Hz** |
+| Smartphone Good speaker stereo/mono | **120, 140, 160, 180 Hz** |
+| Laptop speaker | **100, 120, 140, 160, 180 Hz** |
+| TV / Small speaker | **80, 100, 120, 140, 160, 180 Hz** |
+| Speaker Desktop/Full-range | **60, 80, 100, 120, 140, 160, 180 Hz** |
+| Headphone / IEM | **60, 80, 100, 120, 140, 160 Hz** |
+| Subwoofer | **40, 50, 60, 80 Hz** |
 
 ```
 *frequency
@@ -238,17 +247,17 @@ width above 1.0 = too steep, causes a small bump/dip at the edge (usually unwant
 
 Quick comparison using the same filter goal —
 "warm up the bass" recommendation frequency 150-180:
-lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=zdf
-lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=zdf
-lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=zdf
-lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=zdf
-lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=zdf
+lowshelf=frequency=160:gain=7.5:width_type=q:width=0.707:transform=zdf
+lowshelf=frequency=160:gain=7.5:width_type=o:width=2.0:transform=zdf
+lowshelf=frequency=160:gain=7.5:width_type=slope:width=1.0:transform=zdf
+lowshelf=frequency=160:gain=7.5:width_type=h:width=254:transform=zdf
+lowshelf=frequency=160:gain=7.5:width_type=k:width=0.254:transform=zdf
 
-lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=svf
-lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=svf
-lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=svf
-lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=svf
-lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=svf
+lowshelf=frequency=160:gain=7.5:width_type=q:width=0.707:transform=svf
+lowshelf=frequency=160:gain=7.5:width_type=o:width=2.0:transform=svf
+lowshelf=frequency=160:gain=7.5:width_type=slope:width=1.0:transform=svf
+lowshelf=frequency=160:gain=7.5:width_type=h:width=254:transform=svf
+lowshelf=frequency=160:gain=7.5:width_type=k:width=0.254:transform=svf
 
 tiltshelf=frequency=2000:gain=-1.0:width_type=q:width=0.707:transform=zdf
 tiltshelf=frequency=2000:gain=-1.0:width_type=o:width=2.0:transform=zdf
