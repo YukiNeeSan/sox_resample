@@ -283,7 +283,7 @@ Quick Reference Formula to always find the safe Hz width:
 
 `[stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30]`
 ```
-sepaaration stereo effect for audio, i keep drmix 1.0 for natural vocal reason to prevent sounds become harsh metallic
+separation stereo effect for audio, i keep drymix 1.0 for natural vocal reason to prevent sounds become harsh metallic
 https://ffmpeg.org/ffmpeg-filters.html#stereowiden
 ```
 
@@ -364,7 +364,7 @@ you can change into 0 or 1 to hear the different
 ### Notes
 
 using `ffprobe` autoskip sox_resample when HE-AAC/HE-AACv2 format is detected  
-low sound quality due to the removal of high frequencies caused by poor design codec
+HE-AACv1 and v2 is low sound quality due to the removal of high frequencies caused by poor design codec
 [Installation Guide](https://github.com/nghiencuuthuoc/FFmpeg-Full-Installation-Guide-for-Windows-11)
 
 ## License
