@@ -159,7 +159,7 @@ Lowshelf: gain min
 ```
 | Device | `lowshelf` |
 |---|---|
-| Smartphone Small speaker | **170, 180, 200 Hz** |
+| Smartphone random poor speaker | **170, 180, 200, 230 Hz** |
 | Smartphone Good speaker stereo/mono | **120, 140, 160, 180 Hz** |
 | Laptop speaker | **100, 120, 140, 160, 180 Hz** |
 | TV / Small speaker | **80, 100, 120, 140, 160, 180 Hz** |
