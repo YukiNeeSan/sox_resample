@@ -159,13 +159,19 @@ Lowshelf: gain min
 ```
 | Device | `lowshelf` |
 |---|---|
-| Smartphone Small speaker | **160, 180, 200 Hz** |
+| Smartphone Small speaker | **170, 180, 200 Hz** |
 | Smartphone Good speaker stereo/mono | **120, 140, 160, 180 Hz** |
 | Laptop speaker | **100, 120, 140, 160, 180 Hz** |
 | TV / Small speaker | **80, 100, 120, 140, 160, 180 Hz** |
 | Speaker Desktop/Full-range | **60, 80, 100, 120, 140, 160, 180 Hz** |
 | Headphone / IEM | **60, 80, 100, 120, 140, 160 Hz** |
 | Subwoofer | **40, 50, 60, 80 Hz** |
+
+I hope future standards will define a minimum low-frequency tier performance target 
+of around 160 Hz for low-tier speakers, together with appropriate 
+frequency-response and distortion limits. This would provide a consistent 
+reference for engineers and developers worldwide, reduce device-to-device 
+inconsistencies, and make speaker tuning and EQ compensation more predictable.
 
 ```
 *frequency
