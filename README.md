@@ -372,6 +372,16 @@ Set to 1 to hear only the harmonics the exciter adds (the original signal is mut
 which helps you judge what the filter is doing. Use 0 for normal playback.
 ```
 
+`[surround=chl_in=stereo:chl_out=7.1:win_func=gauss]`
+```
+upmix source into surround
+win_func=bhann / gauss / hamming / lanczos / hanning / hann / rect / sine / bartlett / dolph / welch sounds good when i tested
+and the rest are experimental like blackman/flattop/bharris/bnuttall/nuttall/tukey/cauchy/parzen/poisson/bohman/kaiser 
+https://ffmpeg.org/ffmpeg-utils.html#channel-layout-syntax
+https://ffmpeg.org/ffmpeg-filters.html#surround
+```
+
+
 ### Notes
 
 The script uses `ffprobe` to skip `sox_resample` for HE-AAC (v1 and v2), because these low-bitrate codecs sound artifact-prone when resampled and are best left to the default AAC decoder.
