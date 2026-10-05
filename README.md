@@ -334,7 +334,11 @@ precision is float (32-bit floating-point), double (64-bit floating-point) or fi
 
 `[aexciter=amount=1:blend=3:ceil=20000:drive=8.5:freq=3000:level_in=1:level_out=1:listen=0]`
 ```
-aexciter generates new high-frequency content that was not in the original signal. It does this by creating harmonic distortion, limiting it to the upper range, and mixing it back into the original sound. Unlike an equalizer, which only boosts the treble that already exists, an exciter adds new harmonics on top. The result is a crisper, more "brilliant" sound.
+aexciter generates new high-frequency content that was not in the original signal.
+It does this by creating harmonic distortion, limiting it to the upper range,
+and mixing it back into the original sound. Unlike an equalizer,
+which only boosts the treble that already exists, an exciter adds new harmonics on top.
+The result is a crisper, more "brilliant" sound.
 
 TL;DR: Adds artificial sparkle that creates a Hi-Res-like sense of brightness. It is not true Hi-Res.
 
@@ -347,13 +351,15 @@ octave of newly created harmonics -10 up to 10
 2 or 3 is enough
 
 3. ceil
-Upper frequency limit for harmonic generation, in Hz (range: 9999 to 20000). A value of 9999 means no limit. In my testing, 20000 works well because it sets a clear upper bound.
+Upper frequency limit for harmonic generation, in Hz (range: 9999 to 20000). A value of 9999 means no limit.
+In my testing, 20000 works well because it sets a clear upper bound.
 
 4. drive
 amount of newly created harmonics. Range is from 0.1 to 10. Default value is 8.5.
 
 5. freq
-Lower frequency limit for harmonic generation, in Hz (range: 2000 to 12000). In my testing, 3000 is a good starting point. 2000 adds noticeable sibilance to female vocals.
+Lower frequency limit for harmonic generation, in Hz (range: 2000 to 12000). In my testing,
+3000 is a good starting point. 2000 adds noticeable sibilance to female vocals.
 
 6. level_in
 set input volume audio before processing, 1 is enough for general usage
@@ -362,7 +368,8 @@ set input volume audio before processing, 1 is enough for general usage
 set output volume audio after processing, 1 is enough for general usage
 
 8. listen=0
-Set to 1 to hear only the harmonics the exciter adds (the original signal is muted), which helps you judge what the filter is doing. Use 0 for normal playback.
+Set to 1 to hear only the harmonics the exciter adds (the original signal is muted),
+which helps you judge what the filter is doing. Use 0 for normal playback.
 ```
 
 ### Notes
