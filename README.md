@@ -57,7 +57,7 @@ local UPSAMPLE_MULTIPLIER = 64
 set maximum output sample rate target: e.g. 768Khz
 
 ```lua
-target_sr = math.min(target_sr, 768000)
+local SR_CAP = 768000
 ```
 
 The audio chain string format can also be customized directly in the script.
@@ -160,7 +160,7 @@ Lowshelf: gain min
 
 | Device | `lowshelf` |
 |---|---|
-| Smartphone random poor speaker | **170, 180, 200, 230 Hz** It's the worst product |
+| Smartphone random poor speaker | **170, 180, 200, 230 Hz**  |
 | Smartphone Good speaker stereo/mono | **120, 140, 160, 180 Hz** |
 | Laptop speaker | **100, 120, 140, 160, 180 Hz** |
 | TV / Small speaker | **80, 100, 120, 140, 160, 180 Hz** |
@@ -168,7 +168,11 @@ Lowshelf: gain min
 | Headphone / IEM | **60, 80, 100, 120, 140, 160 Hz** |
 | Subwoofer | **40, 50, 60, 80 Hz** |
 
-I hope future standards will define a minimum low-frequency performance target of around 160 Hz for low-tier speakers, together with appropriate frequency-response and distortion limits. This would provide a consistent reference for engineers and developers worldwide, reduce device-to-device inconsistencies, and make speaker tuning and EQ compensation more predictable. Poorly engineered speakers can also cause excessive low-frequency distortion and spectral overlap into the midrange, reducing overall clarity.
+I hope future standards will set a minimum low-frequency target of around 160 Hz for low-end speakers, along with clear limits for frequency response and distortion. A shared reference like this would help engineers and developers worldwide, reduce differences between devices, and make speaker tuning and EQ easier to predict.
+
+Poorly designed speakers can also produce heavy low-frequency distortion that bleeds into the midrange and makes sound less clear.
+
+Update: I found a workaround. Adding `af=stereowiden` after `lowshelf` made the sound much better On every device I tested (more than a few). Still, a proper standard would be more reliable.
 
 ```
 *frequency
@@ -250,17 +254,17 @@ width above 1.0 = too steep, causes a small bump/dip at the edge (usually unwant
 
 Quick comparison using the same filter goal —
 "warm up the bass" recommendation frequency 150-180:
-lowshelf=frequency=160:gain=7.5:width_type=q:width=0.707:transform=zdf
-lowshelf=frequency=160:gain=7.5:width_type=o:width=2.0:transform=zdf
-lowshelf=frequency=160:gain=7.5:width_type=slope:width=1.0:transform=zdf
-lowshelf=frequency=160:gain=7.5:width_type=h:width=254:transform=zdf
-lowshelf=frequency=160:gain=7.5:width_type=k:width=0.254:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=zdf
+lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=zdf
 
-lowshelf=frequency=160:gain=7.5:width_type=q:width=0.707:transform=svf
-lowshelf=frequency=160:gain=7.5:width_type=o:width=2.0:transform=svf
-lowshelf=frequency=160:gain=7.5:width_type=slope:width=1.0:transform=svf
-lowshelf=frequency=160:gain=7.5:width_type=h:width=254:transform=svf
-lowshelf=frequency=160:gain=7.5:width_type=k:width=0.254:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=q:width=0.707:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=o:width=2.0:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=slope:width=1.0:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=h:width=254:transform=svf
+lowshelf=frequency=180:gain=7.5:width_type=k:width=0.254:transform=svf
 
 tiltshelf=frequency=2000:gain=-1.0:width_type=q:width=0.707:transform=zdf
 tiltshelf=frequency=2000:gain=-1.0:width_type=o:width=2.0:transform=zdf
@@ -284,7 +288,7 @@ Quick Reference Formula to always find the safe Hz width:
 
 `[stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30]`
 ```
-separation stereo effect for audio, i keep drymix 1.0 for natural vocal reason to prevent sounds become harsh metallic
+Widens the stereo image by delaying each channel into the other. I keep drymix at 1.0 to preserve the original signal, which keeps vocals natural and, in my testing, avoids a harsh, metallic sound. It also made the speakers easier to drive in my tests.
 https://ffmpeg.org/ffmpeg-filters.html#stereowiden
 ```
 
@@ -294,7 +298,7 @@ https://ffmpeg.org/ffmpeg-filters.html#stereowiden
 0 lets each channel adjust independently, improve microdetail
 
 2. framelen. range 10 to 8000
-framelen for Movies = 350-500, Music = 200-300, compromise both music and movies 150-200, Android mobile = 75-150)
+framelen for Movies = 350-500, Music = 150-300, compromise both music and movies 150-200, Android mobile = 75-150)
 the filter analyzes at once in miliseconds before deciding how much to adjust the volume
 1. 10–100ms = Good for spoken word or podcast, Can feel unnatural on music volume changes too aggressively.
 2. 150–300ms = Good for music and musical film
@@ -325,14 +329,14 @@ Target ceiling — the loudest any single moment is allowed to reach after norma
 `[volume=-4.0dB:precision=double]`
 ```
 pre-amp -4dB just for safe margin berfore processing by aexciter filter
-precision = fixed (8-bit fixed-point), float (32-bit floating-point), double (64-bit floating-point)
+precision is float (32-bit floating-point), double (64-bit floating-point) or fixed (8-bit fixed-point)
 ```
 
-`[aexciter=amount=1:blend=3:ceil=9999:drive=8.5:freq=2000:level_in=1:level_out=1:listen=0]`
+`[aexciter=amount=1:blend=3:ceil=20000:drive=8.5:freq=3000:level_in=1:level_out=1:listen=0]`
 ```
-#coloration music / musical film to produce high sound that is not present in the original signal without
-raises the upper end of an audio signal without simply raising the higher frequencies.
-TLDR; mimicking HiRes Audio for Fun Listening more "crisp" or "brilliant" sound.
+aexciter generates new high-frequency content that was not in the original signal. It does this by creating harmonic distortion, limiting it to the upper range, and mixing it back into the original sound. Unlike an equalizer, which only boosts the treble that already exists, an exciter adds new harmonics on top. The result is a crisper, more "brilliant" sound.
+
+TL;DR: Adds artificial sparkle that creates a Hi-Res-like sense of brightness. It is not true Hi-Res.
 
 1. amount 
 amount of harmonics added to original signal range 0-64 default is 1,
@@ -343,14 +347,13 @@ octave of newly created harmonics -10 up to 10
 2 or 3 is enough
 
 3. ceil
-upper frequency limit of producing harmonics 9999 to 20000
-9999 meaning frequency is unlimited
+Upper frequency limit for harmonic generation, in Hz (range: 9999 to 20000). A value of 9999 means no limit. In my testing, 20000 works well because it sets a clear upper bound.
 
 4. drive
 amount of newly created harmonics. Range is from 0.1 to 10. Default value is 8.5.
 
 5. freq
-lower frequency limit of producing harmonics in Hz minimum 2000, maximum 12000
+Lower frequency limit for harmonic generation, in Hz (range: 2000 to 12000). In my testing, 3000 is a good starting point. 2000 adds noticeable sibilance to female vocals.
 
 6. level_in
 set input volume audio before processing, 1 is enough for general usage
@@ -359,13 +362,12 @@ set input volume audio before processing, 1 is enough for general usage
 set output volume audio after processing, 1 is enough for general usage
 
 8. listen=0
-you can change into 0 or 1 to hear the different
+Set to 1 to hear only the harmonics the exciter adds (the original signal is muted), which helps you judge what the filter is doing. Use 0 for normal playback.
 ```
 
 ### Notes
 
-using `ffprobe` autoskip sox_resample when HE-AAC/HE-AACv2 format is detected  
-HE-AACv1 and v2 is low sound quality due to the removal of high frequencies caused by poor design codec
+The script uses `ffprobe` to skip `sox_resample` for HE-AAC (v1 and v2), because these low-bitrate codecs sound artifact-prone when resampled and are best left to the default AAC decoder.
 [Installation Guide](https://github.com/nghiencuuthuoc/FFmpeg-Full-Installation-Guide-for-Windows-11)
 
 ## License
