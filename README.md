@@ -172,7 +172,7 @@ I hope future standards will set a minimum low-frequency target of around 160 Hz
 
 Poorly designed speakers can also produce heavy low-frequency distortion that bleeds into the midrange and makes sound less clear.
 
-Update: I found a workaround. Adding `af=stereowiden` after `lowshelf` made the sound much better On every device I tested (more than a few). Still, a proper standard would be more reliable.
+Update: I found a workaround. Adding `af=stereowiden` after `lowshelf` made the sound much better On every device I tested (more than a few). Still, a proper standard would be more reliable. 
 
 ```
 *frequency
@@ -351,15 +351,16 @@ octave of newly created harmonics -10 up to 10
 2 or 3 is enough
 
 3. ceil
-Upper frequency limit for harmonic generation, in Hz (range: 9999 to 20000). A value of 9999 means no limit.
+Upper frequency limit for harmonic generation, in Hz (range: 9999 to 20000).
+A value of 9999 means no limit.
 In my testing, 20000 works well because it sets a clear upper bound.
 
 4. drive
 amount of newly created harmonics. Range is from 0.1 to 10. Default value is 8.5.
 
 5. freq
-Lower frequency limit for harmonic generation, in Hz (range: 2000 to 12000). In my testing,
-3000 is a good starting point. 2000 adds noticeable sibilance to female vocals.
+Lower frequency limit for harmonic generation, in Hz (range: 2000 to 12000).
+In my testing, 3000 or 4000 is a good starting point. 2000 adds noticeable sibilance to female vocals.
 
 6. level_in
 set input volume audio before processing, 1 is enough for general usage
@@ -381,6 +382,12 @@ https://ffmpeg.org/ffmpeg-utils.html#channel-layout-syntax
 https://ffmpeg.org/ffmpeg-filters.html#surround
 ```
 
+TL;DR:
+Lowshelf + Stereowiden + Dynaudnorm + Pre-amp + Aexciter
+Adds warmth and punch to kick drum, toms, snare, bass guitar, double bass, synth bass, cello, piano, 
+and male vocals making the bass region easier to hear on most speakers.
+Brings out quiet details dynamically and adds crisp high-frequency sparkle.
+Works well for most music genres. Less tweaking, no complex equalizer needed.
 
 ### Notes
 
