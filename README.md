@@ -165,7 +165,7 @@ Lowshelf: gain min
 | Laptop speaker | **100, 120, 140, 160, 180 Hz** |
 | TV / Small speaker | **80, 100, 120, 140, 160, 180 Hz** |
 | Speaker Desktop/Full-range | **60, 80, 100, 120, 140, 160, 180 Hz** |
-| Headphone / IEM | **60, 80, 100, 120, 140, 160 Hz** |
+| Headphone / IEM | **60, 80, 100, 120, 140, 160, 180 Hz** |
 | Subwoofer | **40, 50, 60, 80 Hz** |
 
 I hope future standards will set a minimum low-frequency target of around 160 Hz for low-end speakers, along with clear limits for frequency response and distortion. A shared reference like this would help engineers and developers worldwide, reduce differences between devices, and make speaker tuning and EQ easier to predict.
