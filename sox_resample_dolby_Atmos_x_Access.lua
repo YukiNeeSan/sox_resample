@@ -108,7 +108,7 @@ local function try_insert_soxr(attempt)
         target_sr)
 
     local chain = resample ..
-        "lowshelf=frequency=180:gain=4.5:transform=zdf:width=0.707:width_type=q," ..
+        "lowshelf=frequency=160:gain=4.5:transform=zdf:width=0.707:width_type=q," ..
         "stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30," ..
         "dynaudnorm=coupling=0:framelen=150:gausssize=31:maxgain=20.0:peak=0.95," ..
 		"volume=-4.0dB:precision=double," ..
