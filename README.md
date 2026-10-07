@@ -382,8 +382,7 @@ https://ffmpeg.org/ffmpeg-utils.html#channel-layout-syntax
 https://ffmpeg.org/ffmpeg-filters.html#surround
 ```
 
-TL;DR:
-Lowshelf + Stereowiden + Dynaudnorm + Pre-amp + Aexciter
+### TL;DR: Lowshelf + Stereowiden + Dynaudnorm + Pre-amp + Aexciter
 Adds warmth and punch to kick drum, toms, snare, bass guitar, double bass, synth bass, cello, piano, 
 and male vocals making the bass region easier to hear on most speakers.
 Brings out quiet details dynamically and adds crisp high-frequency sparkle.
