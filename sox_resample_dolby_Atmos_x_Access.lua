@@ -112,7 +112,7 @@ local function try_insert_soxr(attempt)
         "stereowiden=crossfeed=0.20:delay=30:drymix=1.0:feedback=0.30," ..
         "dynaudnorm=coupling=0:framelen=150:gausssize=31:maxgain=20.0:peak=0.95," ..
 		"volume=-4.0dB:precision=double," ..
-        "aexciter=amount=1:blend=3:ceil=20000:drive=8.5:freq=3000:level_in=1:level_out=1:listen=0"
+        "aexciter=amount=1:blend=3:ceil=20000:drive=8.5:freq=4000:level_in=1:level_out=1:listen=0"
 --		#"surround=chl_in=mono:chl_out=7.1:win_func=gauss",
 
     mp.commandv("af", "set", chain)
