@@ -392,6 +392,7 @@ Works well for most music genres. Less tweaking, no complex equalizer needed.
 
 The script uses `ffprobe` to skip `sox_resample` for HE-AAC (v1 and v2), because these low-bitrate codecs sound artifact-prone when resampled and are best left to the default AAC decoder.
 [Installation Guide](https://github.com/nghiencuuthuoc/FFmpeg-Full-Installation-Guide-for-Windows-11)
+Another lossy codec like Opus, Vorbis, AAC-LC, old MP3 an another codec without fake sounds like SBR in HE_AAC generally safe
 
 ## License
 
